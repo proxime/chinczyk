@@ -1,0 +1,441 @@
+.fields {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.field {
+    position: absolute;
+    background-color: white;
+    width: calc(100% / 15);
+    height: calc(100% / 15);
+    transform: translate(7.025px, -7.025px);
+    border: 1px solid black;
+    z-index: 1;
+}
+
+.field-1 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 1 - 1px);
+}
+
+.field-2 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 2 - 2px);
+}
+
+.field-3 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 3 - 3px);
+}
+
+.field-4 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 4 - 4px);
+}
+
+.field-5 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 5 - 5px);
+}
+
+.field-6 {
+    left: calc((100% / 15) * 5 - 5px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-7 {
+    left: calc((100% / 15) * 4 - 4px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-8 {
+    left: calc((100% / 15) * 3 - 3px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-9 {
+    left: calc((100% / 15) * 2 - 2px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-10 {
+    left: calc((100% / 15) * 1 - 1px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-11 {
+    left: 0;
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-12 {
+    left: 0;
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.field-13 {
+    left: 0;
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-14 {
+    left: calc((100% / 15) * 1 - 1px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-15 {
+    left: calc((100% / 15) * 2 - 2px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-16 {
+    left: calc((100% / 15) * 3 - 3px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-17 {
+    left: calc((100% / 15) * 4 - 4px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-18 {
+    left: calc((100% / 15) * 5 - 5px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-19 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 9 - 9px);
+}
+
+.field-20 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 10 - 10px);
+}
+
+.field-21 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 11 - 11px);
+}
+
+.field-22 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 12 - 12px);
+}
+
+.field-23 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 13 - 13px);
+}
+
+.field-24 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 14 - 14px);
+}
+
+.field-25 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 14 - 14px);
+}
+
+.field-26 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 14 - 14px);
+}
+
+.field-27 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 13 - 13px);
+}
+
+.field-28 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 12 - 12px);
+}
+
+.field-29 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 11 - 11px);
+}
+
+.field-30 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 10 - 10px);
+}
+
+.field-31 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 9 - 9px);
+}
+
+.field-32 {
+    left: calc((100% / 15) * 9 - 9px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-33 {
+    left: calc((100% / 15) * 10 - 10px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-34 {
+    left: calc((100% / 15) * 11 - 11px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-35 {
+    left: calc((100% / 15) * 12 - 12px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-36 {
+    left: calc((100% / 15) * 13 - 13px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-37 {
+    left: calc((100% / 15) * 14 - 14px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.field-38 {
+    left: calc((100% / 15) * 14 - 14px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.field-39 {
+    left: calc((100% / 15) * 14 - 14px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-40 {
+    left: calc((100% / 15) * 13 - 13px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-41 {
+    left: calc((100% / 15) * 12 - 12px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-42 {
+    left: calc((100% / 15) * 11 - 11px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-43 {
+    left: calc((100% / 15) * 10 - 10px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-44 {
+    left: calc((100% / 15) * 9 - 9px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.field-45 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 5 - 5px);
+}
+
+.field-46 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 4 - 4px);
+}
+
+.field-47 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 3 - 3px);
+}
+
+.field-48 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 2 - 2px);
+}
+
+.field-49 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 1 - 1px);
+}
+
+.field-50 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: 0;
+}
+
+.field-51 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: 0;
+    z-index: 1;
+}
+
+.field-52 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: 0;
+}
+
+.field-start-0,
+.fields-0 .field {
+    background-color: $blue;
+}
+
+.field-start-1,
+.fields-1 .field {
+    background-color: $yellow;
+}
+
+.field-start-2,
+.fields-2 .field {
+    background-color: $red;
+}
+
+.field-start-3,
+.fields-3 .field {
+    background-color: $green;
+}
+
+.fields-end {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.fields-0 .field-end-0 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 1 - 1px);
+}
+
+.fields-0 .field-end-1 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 2 - 2px);
+}
+
+.fields-0 .field-end-2 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 3 - 3px);
+}
+
+.fields-0 .field-end-3 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 4 - 4px);
+}
+
+.fields-0 .field-end-4 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 5 - 5px);
+}
+
+.fields-0 .field-end-5 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 6 - 6px);
+}
+
+.fields-1 .field-end-0 {
+    left: calc((100% / 15) * 1 - 1px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-1 .field-end-1 {
+    left: calc((100% / 15) * 2 - 2px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-1 .field-end-2 {
+    left: calc((100% / 15) * 3 - 3px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-1 .field-end-3 {
+    left: calc((100% / 15) * 4 - 4px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-1 .field-end-4 {
+    left: calc((100% / 15) * 5 - 5px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-1 .field-end-5 {
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-2 .field-end-0 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 13 - 13px);
+}
+
+.fields-2 .field-end-1 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 12 - 12px);
+}
+
+.fields-2 .field-end-2 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 11 - 11px);
+}
+
+.fields-2 .field-end-3 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 10 - 10px);
+}
+
+.fields-2 .field-end-4 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 9 - 9px);
+}
+
+.fields-2 .field-end-5 {
+    left: calc((100% / 15) * 7 - 7px);
+    bottom: calc((100% / 15) * 8 - 8px);
+}
+
+.fields-3 .field-end-0 {
+    left: calc((100% / 15) * 13 - 13px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-3 .field-end-1 {
+    left: calc((100% / 15) * 12 - 12px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-3 .field-end-2 {
+    left: calc((100% / 15) * 11 - 11px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-3 .field-end-3 {
+    left: calc((100% / 15) * 10 - 10px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-3 .field-end-4 {
+    left: calc((100% / 15) * 9 - 9px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.fields-3 .field-end-5 {
+    left: calc((100% / 15) * 8 - 8px);
+    bottom: calc((100% / 15) * 7 - 7px);
+}
+
+.field-center {
+    position: absolute;
+    left: calc((100% / 15) * 6 - 6px);
+    bottom: calc((100% / 15) * 6 - 6px);
+    width: calc((100% / 5) - 2px);
+    height: calc((100% / 5) - 2px);
+    background-color: $main;
+    transform: translate(7.025px, -7.025px);
+    border: 1px solid black;
+    z-index: 5;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}

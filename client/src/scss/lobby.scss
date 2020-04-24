@@ -1,0 +1,94 @@
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    z-index: 100;
+    @media (max-width: 600px) {
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+    &__title {
+        font-size: 2.8rem;
+        color: white;
+        font-weight: 700;
+    }
+    &__panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        right: 20px;
+        color: white;
+        @media (max-width: 600px) {
+            right: 10px;
+        }
+    }
+    &__register {
+        padding: 7px 10px;
+        background-color: red;
+        cursor: pointer;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border-radius: 7px;
+    }
+    &__login {
+        cursor: pointer;
+        margin-right: 15px;
+        font-size: 1.45rem;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__create {
+        padding: 7px 10px;
+        background-color: red;
+        cursor: pointer;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border-radius: 7px;
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.lobby {
+    padding-top: 70px;
+}
+
+.players__list {
+    background-color: #fff;
+    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    &__name {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    &__button {
+        font-size: 1.4rem;
+        font-weight: bold;
+        padding: 5px 10px;
+        background-color: orange;
+        color: white;
+        cursor: pointer;
+        border-radius: 7px;
+        user-select: none;
+    }
+}

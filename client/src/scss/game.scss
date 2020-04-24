@@ -1,0 +1,263 @@
+@import 'variables';
+@import 'game-fields';
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game {
+    position: relative;
+    height: 800px;
+    width: 800px;
+    @media (max-width: 1700px) {
+        width: 700px;
+        height: 700px;
+    }
+    @media (max-width: 1300px) {
+        width: 600px;
+        height: 600px;
+    }
+    @media (max-width: 700px) {
+        width: 550px;
+        height: 550px;
+    }
+    @media (max-width: 600px) {
+        width: 450px;
+        height: 450px;
+    }
+    @media (max-width: 500px) {
+        width: 360px;
+        height: 360px;
+    }
+    @media (max-width: 340px) {
+        width: 300px;
+        height: 300px;
+    }
+    &__container {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media (max-width: 1024px) {
+            flex-direction: column;
+            padding-top: 20px;
+        }
+    }
+    &__panel {
+        width: 250px;
+        padding: 10px 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10px;
+        align-self: flex-start;
+        @media (max-width: 1024px) {
+            width: 100%;
+            margin: 0;
+            padding: 20px 30px 5px;
+            height: 400px;
+        }
+        @media (max-width: 500px) {
+            padding: 5px 15px;
+        }
+    }
+    &__chat {
+        flex-grow: 1;
+        max-height: 650px;
+        @media (max-width: 1024px) {
+            order: 1;
+        }
+    }
+    &__dice {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        height: 120px;
+        @media (max-width: 500px) {
+            height: 90px;
+        }
+        &-number {
+            height: 100px;
+            width: 100px;
+            @media (max-width: 500px) {
+                height: 70px;
+                width: 70px;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        &-strike {
+            width: 70%;
+            padding: 10px;
+            background-color: $main;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+        }
+        p {
+            font-size: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+}
+
+.pawns {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    &__pawn {
+        position: absolute;
+        width: 4%;
+        padding-top: 7%;
+        transform: translate(-50%, -25%);
+        @media (max-width: 500px) {
+            transform: translate(-50%, -30%);
+        }
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__move {
+        cursor: pointer;
+        filter: brightness(1.53);
+    }
+}
+
+.areas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.area {
+    position: absolute;
+    width: calc((100% / 15) * 6 - 6px);
+    height: calc((100% / 15) * 6 - 6px);
+}
+
+.area__items {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    padding: 10%;
+    left: 15%;
+    top: 15%;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.area__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+}
+
+.area__center {
+    width: 70%;
+    height: 70%;
+    background-color: $light-gray;
+    border-radius: 50%;
+}
+
+.area-0 {
+    left: 7.025px;
+    bottom: 7.025px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: $blue;
+}
+
+.area-1 {
+    left: 7.025px;
+    top: 7.025px;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    background-color: $yellow;
+}
+
+.area-2 {
+    right: 7.025px;
+    top: 7.025px;
+    background-color: $red;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.area-3 {
+    right: 7.025px;
+    bottom: 7.025px;
+    background-color: $green;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.chat {
+    background-color: white;
+    height: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    &__title {
+        font-size: 3rem;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-bottom: 5px;
+        border-bottom: 1px solid $main;
+        color: $main;
+    }
+    &__main {
+        flex-grow: 1;
+    }
+    &__form {
+        height: 50px;
+        form {
+            height: 100%;
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid $main;
+        }
+        textarea {
+            resize: none;
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            padding: 3px;
+        }
+        button {
+            cursor: pointer;
+            color: white;
+            background-color: $main;
+            border: none;
+            padding: 0 10px;
+        }
+    }
+}

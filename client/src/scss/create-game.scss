@@ -1,0 +1,182 @@
+.create-game {
+    padding: 0 20px 10px;
+    &__players {
+        display: flex;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto 40px;
+        flex-wrap: wrap;
+        @media (max-width: 1000px) {
+            margin: 0 auto 15px;
+        }
+    }
+    &__player {
+        position: relative;
+        width: calc(25% - 20px);
+        margin: 10px;
+        padding-top: calc(25% - 20px);
+        border-radius: 20px;
+        box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.4);
+        @media (max-width: 800px) {
+            width: calc(50% - 20px);
+        }
+        @media (max-width: 700px) {
+            padding-top: calc(35% - 20px);
+        }
+        @media (max-width: 500px) {
+            margin: 3px;
+            box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.4);
+            width: calc(50% - 6px);
+            padding-top: calc(45% - 6px);
+        }
+    }
+    &__player-waiting {
+        font-size: 7rem;
+        @media (max-width: 800px) {
+            font-size: 5rem;
+        }
+        @media (max-width: 360px) {
+            font-size: 4rem;
+        }
+    }
+    &__player-content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        padding: 7px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &__player-color {
+        width: 40%;
+        height: 40%;
+        border-radius: 20px;
+        margin: 0 auto 10px;
+    }
+    &__player-name {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        @media (max-width: 500px) {
+            margin-bottom: 3px;
+        }
+    }
+    &__player-options {
+        display: flex;
+    }
+    &__player-option {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin: 0 5px;
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+        user-select: none;
+    }
+    &__chat {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto 40px;
+        height: 300px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        @media (max-width: 1000px) {
+            height: 230px;
+        }
+    }
+    &__chat-main {
+        flex-grow: 1;
+        overflow-y: scroll;
+        margin-bottom: 7px;
+    }
+    &__chat-msg {
+        font-size: 1.4rem;
+        display: flex;
+        margin-bottom: 3px;
+    }
+    &__msg-user {
+        margin-right: 12px;
+        font-weight: bold;
+        color: blue;
+    }
+    &__chat-form {
+        width: 100%;
+        min-height: 40px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid orange;
+        form {
+            display: flex;
+            height: 100%;
+        }
+        textarea {
+            flex-grow: 1;
+            resize: none;
+            outline: none;
+            border: none;
+            padding: 3px 5px;
+            height: 100%;
+        }
+        button {
+            font-size: 1.4rem;
+            font-weight: bold;
+            width: 60px;
+            cursor: pointer;
+            border: none;
+            color: white;
+            background-color: orange;
+            outline: none;
+        }
+    }
+    &__refresh {
+        font-size: 1.6rem;
+        width: 35px;
+        height: 35px;
+        border: 1px solid black;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        &:hover {
+            background-color: #f1f1f1;
+        }
+    }
+    &__btns {
+        display: flex;
+        margin: 0 auto;
+        width: fit-content;
+        margin-bottom: 30px;
+        @media (max-width: 500px) {
+            flex-direction: column;
+        }
+    }
+    &__btn {
+        padding: 10px 0;
+        width: 200px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 2rem;
+        background-color: green;
+        color: white;
+        border-radius: 10px;
+        margin: 0 10px;
+        &:last-child {
+            background-color: red;
+            @media (max-width: 500px) {
+                margin-top: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+.authentication {
+    margin: 80px auto 40px;
+    padding: 20px 40px;
+    padding-bottom: 30px;
+    background-color: #fff;
+    width: 100%;
+    max-width: 550px;
+    &__close-container {
+        display: flex;
+        justify-content: flex-end;
+        color: black;
+    }
+    &__close {
+        cursor: pointer;
+        font-size: 2rem;
+        padding: 3px;
+        &:hover {
+            color: #555;
+        }
+    }
+    &__title {
+        font-size: 3.3rem;
+        font-weight: 700;
+        padding: 10px 0;
+        letter-spacing: 0.7px;
+        color: black;
+    }
+    &__desc {
+        font-size: 1.3rem;
+        padding: 10px 0;
+        color: #777;
+    }
+    &__form {
+        padding: 10px 0;
+    }
+    &__input-container {
+        margin-bottom: 20px;
+    }
+    &__input-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: black;
+        padding-bottom: 2px;
+    }
+    &__input {
+        width: 100%;
+        font-size: 1.4rem;
+        padding: 6px;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #aaa;
+    }
+    &__input-error {
+        color: red;
+        padding: 2px 0;
+        font-size: 1.1rem;
+    }
+    &__bad-credential {
+        color: red;
+        font-size: 1.6rem;
+    }
+    &__button-container {
+        display: flex;
+        padding-bottom: 10px;
+    }
+    &__button {
+        color: white;
+        background-color: orange;
+        padding: 9px 13px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        user-select: none;
+    }
+    &__change {
+        width: fit-content;
+        font-size: 1.2rem;
+        color: #777;
+        font-weight: 700;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        overflow-y: scroll;
+        z-index: 20;
+    }
+}

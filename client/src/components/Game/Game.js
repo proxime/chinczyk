@@ -15,6 +15,8 @@ const Game = () => {
     const game = useSelector((state) => state.game.gamePlayers);
     const user = useSelector((state) => state.auth.user);
 
+    console.log('game', user);
+
     useEffect(() => {
         setIsRender(true);
     }, []);

@@ -10,13 +10,13 @@ const Chat = () => {
     const renderChat = chat.map((msg, index) =>
         msg.type === 'msg' ? (
             <div className="create-game__chat-msg" key={index}>
-                <div
+                <span
                     className="create-game__msg-user"
                     style={{ color: `${msg.color}` }}
                 >
                     {msg.nick}:
-                </div>
-                <div className="create-game__msg-text">{msg.msg}</div>
+                </span>
+                <span className="create-game__msg-text">{msg.msg}</span>
             </div>
         ) : (
             <div className="create-game__chat-msg" key={index}>

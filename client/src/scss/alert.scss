@@ -1,3 +1,5 @@
+@import 'variables';
+
 .alert {
     margin: 80px auto 40px;
     padding: 40px 40px;
@@ -34,10 +36,10 @@
         user-select: none;
         &-accept {
             margin-right: 10px;
-            background-color: green;
+            background-color: $green;
         }
         &-cancel {
-            background-color: red;
+            background-color: $red;
         }
     }
     &__popup {

@@ -92,3 +92,41 @@
         user-select: none;
     }
 }
+
+.menu {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    &__option {
+        width: 400px;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        display: block;
+        color: white;
+        text-decoration: none;
+        &:hover {
+            color: #f39c12;
+        }
+        @media (max-width: 500px) {
+            width: 300px;
+            text-align: center;
+            &:hover {
+                color: white;
+            }
+        }
+    }
+    @media (max-height: 300px) {
+        position: relative;
+        bottom: 0px;
+        left: 0px;
+        padding-left: 30px;
+    }
+    @media (max-width: 500px) {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

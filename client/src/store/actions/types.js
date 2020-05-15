@@ -23,3 +23,6 @@ export const CLEAN_CHAT = 'CLEAN_CHAT';
 export const GET_RANDOM_NUMBER = 'GET_RANDOM_NUMBER';
 export const NEXT_TURN = 'NEXT_TURN';
 export const PAWN_MOVE = 'PAWN_MOVE';
+export const PLAYER_DISSCONNECT = 'PLAYER_DISSCONNECT';
+export const PLAYER_RETURN = 'PLAYER_RETURN';
+export const END_GAME = 'END_GAME';

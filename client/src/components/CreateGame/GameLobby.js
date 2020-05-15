@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import Players from './Players';
 import Chat from './Chat';
@@ -9,10 +9,10 @@ import socket from '../../utils/socket';
 import '../../scss/create-game.scss';
 
 const GameLobby = ({ history }) => {
-    const loading = useSelector(state => state.auth.loading);
-    const user = useSelector(state => state.auth.user);
-    const inGame = useSelector(state => state.game.inGame);
-    const gameId = useSelector(state => state.game.gamePlayers);
+    const loading = useSelector((state) => state.auth.loading);
+    const user = useSelector((state) => state.auth.user);
+    const inGame = useSelector((state) => state.game.inGame);
+    const gameId = useSelector((state) => state.game.gamePlayers);
 
     const dispatch = useDispatch();
 

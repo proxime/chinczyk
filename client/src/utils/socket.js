@@ -1,8 +1,8 @@
 import io from 'socket.io-client';
 
-const production = '/';
-// const dev = 'http://localhost:5000';
+// const client = '/';
+const client = 'http://localhost:5000';
 
-const socket = io.connect(production);
+const socket = io.connect(client);
 
 export default socket;

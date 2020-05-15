@@ -5,20 +5,21 @@ import Areas from './Areas';
 import Chat from './Chat';
 import Pawns from './Pawns';
 import Dice from './Dice';
+import Dissconnect from './Dissconnect';
 import { useSelector } from 'react-redux';
 
 import '../../scss/game.scss';
 
 const Game = () => {
     const [isRender, setIsRender] = useState(false);
-    const game = useSelector(state => state.game.gamePlayers);
-    const user = useSelector(state => state.auth.user);
+    const game = useSelector((state) => state.game.gamePlayers);
+    const user = useSelector((state) => state.auth.user);
 
     useEffect(() => {
         setIsRender(true);
     }, []);
 
-    if (!user || (!game && !game.started)) {
+    if (!user || !game || (game && !game.started)) {
         return <Redirect to="/" />;
     }
 
@@ -28,6 +29,7 @@ const Game = () => {
                 <Fields />
                 <Areas />
                 {isRender && <Pawns />}
+                <Dissconnect />
             </div>
             <div className="game__panel">
                 <Chat />

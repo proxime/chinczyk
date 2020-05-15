@@ -16,6 +16,7 @@ app.use('/api/auth', require('./routes/auth'));
 const users = {};
 const usersList = {};
 const games = {};
+const dissconnected = [];
 
 const logoutOrDisconnect = (socket) => {
     const gameId = users[socket.id].game;
@@ -39,7 +40,6 @@ const logoutOrDisconnect = (socket) => {
                     (player) => player.key === socket.id
                 );
                 game.players.splice(removeIndex, 1);
-                games[gameId] = game;
                 socket.broadcast.to(gameId).emit('join', game);
                 socket.broadcast
                     .to(gameId)
@@ -48,6 +48,15 @@ const logoutOrDisconnect = (socket) => {
                         `Użytkownik ${users[socket.id].login} opuścił grę`
                     );
             }
+        } else {
+            dissconnected.push({
+                id: socket.id,
+                login: users[socket.id].login,
+                game: users[socket.id].game,
+            });
+            socket.broadcast
+                .to(gameId)
+                .emit('dissconnect', users[socket.id].login);
         }
     }
     delete users[socket.id];
@@ -74,7 +83,48 @@ io.on('connection', (socket) => {
             socket,
             game: null,
         };
-        usersList[socket.id] = login;
+        // Check if user left game
+        const leftGame = dissconnected.findIndex(
+            (player) => player.login === login
+        );
+        if (leftGame >= 0) {
+            const player = dissconnected[leftGame];
+            dissconnected.splice(leftGame, 1);
+            const game = games[player.game];
+            if (!game) {
+                return (usersList[socket.id] = login);
+            }
+
+            const gameId = player.game;
+            socket.join(gameId);
+            const user = users[socket.id];
+            user.game = gameId;
+
+            // Update game info
+            if (game.creator === player.id) game.creator = socket.id;
+            if (game.turn === player.id) game.turn = socket.id;
+            const playerNumber = game.players.findIndex(
+                (tempPlayer) => tempPlayer.key === player.id
+            );
+            game.players[playerNumber].key = socket.id;
+            game.board[socket.id] = game.board[player.id];
+            game.board[socket.id].id = socket.id;
+            delete game.board[player.id];
+
+            io.to(gameId).emit('return', { game, nick: user.login });
+            io.to(gameId).emit(
+                'chatInfo',
+                `Użytkownik ${user.login} wrócił do gry`
+            );
+            if (game.dice && game.turn === socket.id) {
+                socket.emit('randomNumber', {
+                    randomNumber: game.dice,
+                    canMove: game.canMove,
+                });
+            }
+        } else {
+            usersList[socket.id] = login;
+        }
     });
     socket.on('logout', () => {
         logoutOrDisconnect(socket);
@@ -89,6 +139,7 @@ io.on('connection', (socket) => {
             started: false,
             board: {},
             diceHistory: [],
+            dice: null,
             turn: null,
             players: [
                 {
@@ -132,7 +183,11 @@ io.on('connection', (socket) => {
             socket.emit('err');
             return;
         }
-        if (!games[gameId] || games[gameId].players.length === 4) {
+        if (
+            !games[gameId] ||
+            games[gameId].players.length === 4 ||
+            games[gameId].started
+        ) {
             socket.emit('gameNotFound');
             return;
         }
@@ -151,6 +206,7 @@ io.on('connection', (socket) => {
             'chatInfo',
             `Użytkownik ${user.login} dołączył do gry`
         );
+        socket.emit('joinGame');
     });
     socket.on('kick', (request) => {
         const { gameId, playerId } = request;
@@ -167,7 +223,6 @@ io.on('connection', (socket) => {
             return;
         }
         const user = game.players.splice(removeIndex, 1);
-        games[gameId] = game;
         io.to(gameId).emit('join', game);
         users[playerId].game = null;
         users[playerId].socket.emit('kick');
@@ -206,7 +261,6 @@ io.on('connection', (socket) => {
             (player) => player.key === socket.id
         );
         game.players.splice(removeIndex, 1);
-        games[gameId] = game;
         users[socket.id].game = null;
         socket.broadcast.to(gameId).emit('join', game);
         user.socket.leave(gameId);
@@ -238,7 +292,6 @@ io.on('connection', (socket) => {
             2: false,
             3: false,
         };
-        games[gameId] = game;
         io.to(gameId).emit('startGame', game);
         io.to(gameId).emit('chatInfo', 'Rozpoczęcie gry!');
     });
@@ -258,12 +311,13 @@ io.on('connection', (socket) => {
         const user = users[socket.id];
         if (!user) return;
         const game = games[user.game];
-        if (!game || game.turn !== socket.id) {
+        if (!game || game.turn !== socket.id || game.dice) {
             socket.emit('err');
             return;
         }
         const randomNumber = Math.floor(Math.random() * 6) + 1;
-        games[user.game].diceHistory.unshift(randomNumber);
+        game.dice = randomNumber;
+        game.diceHistory.unshift(randomNumber);
         const playerPawns = game.board[socket.id].pawns;
         const canMove = {
             0: false,
@@ -282,7 +336,7 @@ io.on('connection', (socket) => {
                 }
             }
         }
-        games[user.game].canMove = canMove;
+        game.canMove = canMove;
         socket.emit('randomNumber', { randomNumber, canMove });
         if (!canMove[0] && !canMove[1] && !canMove[2] && !canMove[3]) {
             setTimeout(() => {
@@ -292,7 +346,8 @@ io.on('connection', (socket) => {
                 if (turn === game.players.length - 1) turn = 0;
                 else turn++;
                 const playerTurn = game.players[turn].key;
-                games[user.game].turn = playerTurn;
+                game.turn = playerTurn;
+                game.dice = null;
                 io.to(game.id).emit('nextTurn', playerTurn);
             }, 1000);
         }
@@ -310,11 +365,34 @@ io.on('connection', (socket) => {
         if (pawn === 0) {
             pawn = 1;
         } else {
-            pawn += game.diceHistory[0];
+            pawn += game.dice;
         }
-        games[user.game].board[socket.id].pawns[number] = pawn;
+        game.board[socket.id].pawns[number] = pawn;
+
+        // Check if player win
+        if (pawn === 57) {
+            if (
+                game.board[socket.id].pawns[0] === 57 &&
+                game.board[socket.id].pawns[1] === 57 &&
+                game.board[socket.id].pawns[2] === 57 &&
+                game.board[socket.id].pawns[3] === 57
+            ) {
+                io.to(game.id).emit('end-game', {
+                    board: game.board,
+                    winner: user.login,
+                });
+                game.players.forEach((player) => {
+                    users[player.key].game = null;
+                    users[player.key].socket.leave(game.id);
+                    usersList[player.key] = player.login;
+                });
+                delete games[game.id];
+                return;
+            }
+        }
 
         // Check if any pawn is on the same position
+        let isOnTheSamePos = false;
         let translatedPawn = pawn;
         if (translatedPawn !== 0 && translatedPawn <= 51) {
             if (translatedPawn <= 52 - game.board[socket.id].number * 13) {
@@ -336,15 +414,17 @@ io.on('connection', (socket) => {
                             value = value - (52 - game.board[key].number * 13);
                         }
 
-                        if (value === translatedPawn)
-                            games[user.game].board[key].pawns[i] = 0;
+                        if (value === translatedPawn) {
+                            isOnTheSamePos = true;
+                            game.board[key].pawns[i] = 0;
+                        }
                     }
                 }
             }
         }
 
-        io.to(game.id).emit('pawnMove', games[user.game].board);
-        games[user.game].canMove = {
+        io.to(game.id).emit('pawnMove', game.board);
+        game.canMove = {
             0: false,
             1: false,
             2: false,
@@ -354,12 +434,13 @@ io.on('connection', (socket) => {
             let turn = game.players.findIndex(
                 (player) => player.key === game.turn
             );
-            if (game.diceHistory[0] !== 6 && pawn !== 57) {
+            if (game.dice !== 6 && pawn !== 57 && !isOnTheSamePos) {
                 if (turn === game.players.length - 1) turn = 0;
                 else turn++;
             }
             const playerTurn = game.players[turn].key;
-            games[user.game].turn = playerTurn;
+            game.turn = playerTurn;
+            game.dice = null;
             io.to(game.id).emit('nextTurn', playerTurn);
         }, 300);
     });

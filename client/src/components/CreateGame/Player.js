@@ -5,9 +5,9 @@ import socket from '../../utils/socket';
 import Spinner from '../Spinner';
 
 const Player = ({ color, player }) => {
-    const gameId = useSelector(state => state.game.gamePlayers);
-    const userId = useSelector(state => state.auth.userId);
-    const isCreator = useSelector(state => state.game.isCreator);
+    const gameId = useSelector((state) => state.game.gamePlayers);
+    const userId = useSelector((state) => state.auth.userId);
+    const isCreator = useSelector((state) => state.game.isCreator);
 
     const handleKickPlayer = () => {
         if (!gameId) return;
@@ -35,9 +35,6 @@ const Player = ({ color, player }) => {
                                     onClick={handleKickPlayer}
                                 >
                                     <i className="fas fa-times"></i>
-                                </div>
-                                <div className="create-game__player-option">
-                                    <i className="fas fa-exchange-alt"></i>
                                 </div>
                             </div>
                         )}

@@ -9,7 +9,14 @@ import {
     GET_RANDOM_NUMBER,
     NEXT_TURN,
     PAWN_MOVE,
+    PLAYER_DISSCONNECT,
+    PLAYER_RETURN,
+    END_GAME,
+    CLEAN_CHAT,
+    REMOVE_GAME,
+    KICK,
 } from './types';
+import { setAlert } from './alert';
 
 export const getPlayers = (players) => {
     return {
@@ -44,10 +51,31 @@ export const joinGame = () => {
     };
 };
 
-export const leaveGame = () => {
-    return {
+export const leaveGame = () => (dispatch) => {
+    dispatch({
+        type: CLEAN_CHAT,
+    });
+    dispatch({
         type: LEAVE_GAME,
-    };
+    });
+};
+
+export const removeGame = () => (dispatch) => {
+    dispatch({
+        type: CLEAN_CHAT,
+    });
+    dispatch({
+        type: REMOVE_GAME,
+    });
+};
+
+export const kick = () => (dispatch) => {
+    dispatch({
+        type: CLEAN_CHAT,
+    });
+    dispatch({
+        type: KICK,
+    });
 };
 
 export const startGame = (gameData) => {
@@ -76,4 +104,30 @@ export const pawnMove = (board) => {
         type: PAWN_MOVE,
         payload: board,
     };
+};
+
+export const playerDissconnect = (nick) => {
+    return {
+        type: PLAYER_DISSCONNECT,
+        payload: nick,
+    };
+};
+
+export const playerReturn = (data) => {
+    return {
+        type: PLAYER_RETURN,
+        payload: data,
+    };
+};
+
+export const endGame = (winner) => (dispatch) => {
+    dispatch(
+        setAlert('Koniec gry', `Gra dobiegła końca, zwyciężył gracz ${winner}`)
+    );
+    dispatch({
+        type: END_GAME,
+    });
+    dispatch({
+        type: CLEAN_CHAT,
+    });
 };

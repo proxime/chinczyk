@@ -1,15 +1,21 @@
-import { ALREADY_LOGIN, KICK, REMOVE_GAME } from './store/actions/types';
+import { ALREADY_LOGIN } from './store/actions/types';
 import { getUser, setUserId } from './store/actions/auth';
 import { sendMessage, setChatInfo } from './store/actions/chat';
 import { setAlert } from './store/actions/alert';
 import {
     getPlayers,
     setInviteGame,
+    joinGame,
     getGamePlayers,
     startGame,
     getRandomNumber,
     nextTurn,
     pawnMove,
+    playerDissconnect,
+    playerReturn,
+    endGame,
+    removeGame,
+    kick,
 } from './store/actions/game';
 import socket from './utils/socket';
 
@@ -73,15 +79,19 @@ const initApp = (store) => {
         store.dispatch(getGamePlayers(data));
     });
 
+    socket.on('joinGame', () => {
+        store.dispatch(joinGame());
+    });
+
     socket.on('kick', () => {
-        store.dispatch({ type: KICK });
+        store.dispatch(kick());
         store.dispatch(
             setAlert('Zostałeś wyrzucony', 'Niestety zostałeś wyrzucony z gry')
         );
     });
 
     socket.on('removeGame', () => {
-        store.dispatch({ type: REMOVE_GAME });
+        store.dispatch(removeGame());
     });
 
     socket.on('startGame', (data) => {
@@ -107,6 +117,20 @@ const initApp = (store) => {
 
     socket.on('pawnMove', (board) => {
         store.dispatch(pawnMove(board));
+    });
+
+    socket.on('dissconnect', (nick) => {
+        store.dispatch(playerDissconnect(nick));
+    });
+
+    socket.on('return', (data) => {
+        store.dispatch(playerReturn(data));
+    });
+
+    socket.on('end-game', (data) => {
+        const { board, winner } = data;
+        store.dispatch(pawnMove(board));
+        store.dispatch(endGame(winner));
     });
 };
 

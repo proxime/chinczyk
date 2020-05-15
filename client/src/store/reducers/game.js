@@ -11,6 +11,9 @@ import {
     GET_RANDOM_NUMBER,
     NEXT_TURN,
     PAWN_MOVE,
+    PLAYER_DISSCONNECT,
+    PLAYER_RETURN,
+    END_GAME,
 } from '../actions/types';
 
 const initState = {
@@ -21,6 +24,7 @@ const initState = {
     inGame: false,
     dice: null,
     canMove: {},
+    dissconnect: [],
 };
 
 export default (state = initState, action) => {
@@ -83,6 +87,22 @@ export default (state = initState, action) => {
                     board: payload,
                 },
             };
+        case PLAYER_DISSCONNECT:
+            return {
+                ...state,
+                dissconnect: [...state.dissconnect, payload],
+            };
+        case PLAYER_RETURN:
+            const afterReturned = state.dissconnect.filter(
+                (player) => player !== payload.nick
+            );
+            return {
+                ...state,
+                dissconnect: afterReturned,
+                gamePlayers: payload.game,
+                inGame: true,
+            };
+        case END_GAME:
         case KICK:
         case REMOVE_GAME:
         case LEAVE_GAME:

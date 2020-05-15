@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import colors from '../../utils/colors';
 import socket from '../../utils/socket';
 
 import blue from '../../images/blue.png';
@@ -14,13 +13,14 @@ const Pawn = ({ player, number, value }) => {
     const pawnValue = useRef(value);
     const userId = useSelector((state) => state.auth.userId);
     const canMove = useSelector((state) => state.game.canMove);
+    const dissconnected = useSelector((state) => state.game.dissconnect);
 
     const [pos, setPos] = useState({
         x: 0,
         y: 0,
     });
 
-    const getCurrentPosition = () => {
+    const getCurrentPosition = useCallback(() => {
         if (pawnValue.current === 0) {
             const item = document.querySelector(
                 `.area-${player.number} .area__item:nth-child(${
@@ -56,7 +56,7 @@ const Pawn = ({ player, number, value }) => {
                 y: item.offsetTop - 3,
             });
         }
-    };
+    }, [pawnValue, number, player.number]);
 
     useEffect(() => {
         if (value > 51) {
@@ -76,14 +76,22 @@ const Pawn = ({ player, number, value }) => {
             pawnValue.current = 0;
         }
         getCurrentPosition();
-    }, [value]);
+    }, [value, getCurrentPosition, player]);
 
     useEffect(() => {
         window.addEventListener('resize', getCurrentPosition);
-    }, []);
+
+        return () => {
+            window.removeEventListener('resize', getCurrentPosition);
+        };
+    }, [getCurrentPosition]);
 
     const handlePawnMove = () => {
-        if (userId === player.id && canMove[number] === true) {
+        if (
+            userId === player.id &&
+            canMove[number] === true &&
+            dissconnected.length === 0
+        ) {
             socket.emit('pawnMove', number);
         }
     };
@@ -91,7 +99,9 @@ const Pawn = ({ player, number, value }) => {
     return (
         <div
             className={`pawns__pawn ${
-                userId === player.id && canMove[number] === true
+                userId === player.id &&
+                canMove[number] === true &&
+                dissconnected.length === 0
                     ? 'pawns__move'
                     : ''
             }`}

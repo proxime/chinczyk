@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setInviteGame } from '../store/actions/game';
+import { setInviteGame, joinGame } from '../store/actions/game';
 import { CLOSE_ALERT } from '../store/actions/types';
 
 import '../scss/alert.scss';
@@ -26,6 +26,7 @@ const Alert = ({ history }) => {
 
     const handleAcceptInvite = () => {
         if (invite) {
+            dispatch(joinGame());
             socket.emit('acceptInvite', invite);
             dispatch(setInviteGame(null));
             history.push('/lobby');

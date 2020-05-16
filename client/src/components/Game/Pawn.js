@@ -20,6 +20,15 @@ const Pawn = ({ player, number, value }) => {
         y: 0,
     });
 
+    let pawnOnSamePos = 0;
+    if (value !== 0) {
+        for (const i in player.pawns) {
+            if (i !== number && value === player.pawns[i]) {
+                pawnOnSamePos++;
+            }
+        }
+    }
+
     const getCurrentPosition = useCallback(() => {
         if (pawnValue.current === 0) {
             const item = document.querySelector(
@@ -112,6 +121,9 @@ const Pawn = ({ player, number, value }) => {
             }}
         >
             <img src={pawns[player.number]} alt="" />
+            {pawnOnSamePos > 0 && (
+                <div className="pawns__pawn-number">{pawnOnSamePos + 1}</div>
+            )}
         </div>
     );
 };

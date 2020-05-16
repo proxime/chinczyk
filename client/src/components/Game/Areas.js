@@ -3,12 +3,10 @@ import { useSelector } from 'react-redux';
 
 const Areas = () => {
     const players = useSelector((state) => state.game.gamePlayers.players);
-    console.log(players);
 
     const areas = [];
     const render = () => {
         for (let i = 0; i < 4; ++i) {
-            console.log(players[i]);
             areas.push(
                 <div key={i} className={`area area-${i}`}>
                     <div className="area__nick">

@@ -283,6 +283,7 @@
         padding-bottom: 5px;
         border-bottom: 1px solid $main;
         color: $main;
+        user-select: none;
     }
     &__main {
         flex-grow: 1;
@@ -312,6 +313,7 @@
             background-color: $main;
             border: none;
             padding: 0 10px;
+            outline: none;
         }
     }
 }

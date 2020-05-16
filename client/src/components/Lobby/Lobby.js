@@ -1,19 +1,14 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import TopBar from './TopBar';
 import Auth from '../Auth/Auth';
 import CreateGame from '../CreateGame/CreateGame';
 import GameLobby from '../CreateGame/GameLobby';
 import Home from './Home';
-import { useSelector } from 'react-redux';
 
 import '../../scss/lobby.scss';
 
 const Lobby = () => {
-    const game = useSelector((state) => state.game);
-    if (game.inGame && game.gamePlayers && game.gamePlayers.started)
-        return <Redirect to="/game" />;
-
     return (
         <>
             <Auth />

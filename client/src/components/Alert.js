@@ -26,10 +26,10 @@ const Alert = ({ history }) => {
 
     const handleAcceptInvite = () => {
         if (invite) {
-            dispatch(joinGame());
+            // dispatch(joinGame());
             socket.emit('acceptInvite', invite);
             dispatch(setInviteGame(null));
-            history.push('/lobby');
+            // history.push('/lobby');
         }
         handleCloseAlert();
     };

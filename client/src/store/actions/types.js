@@ -21,6 +21,7 @@ export const START_GAME = 'START_GAME';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const CLEAN_CHAT = 'CLEAN_CHAT';
 export const GET_RANDOM_NUMBER = 'GET_RANDOM_NUMBER';
+export const SHOW_DICE = 'SHOW_DICE';
 export const NEXT_TURN = 'NEXT_TURN';
 export const PAWN_MOVE = 'PAWN_MOVE';
 export const PLAYER_DISSCONNECT = 'PLAYER_DISSCONNECT';

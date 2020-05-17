@@ -9,6 +9,7 @@ import {
     getGamePlayers,
     startGame,
     getRandomNumber,
+    showDice,
     nextTurn,
     pawnMove,
     playerDissconnect,
@@ -109,6 +110,10 @@ const initApp = (store) => {
     socket.on('randomNumber', (data) => {
         const { randomNumber, canMove } = data;
         store.dispatch(getRandomNumber(randomNumber, canMove));
+    });
+
+    socket.on('showDice', (dice) => {
+        store.dispatch(showDice(dice));
     });
 
     socket.on('nextTurn', (playerTurn) => {

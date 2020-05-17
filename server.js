@@ -330,6 +330,15 @@ io.on('connection', (socket) => {
             if (playerPawns[key] === 0) {
                 if (randomNumber === 6) {
                     canMove[key] = true;
+                } else if (randomNumber === 1) {
+                    if (
+                        playerPawns[0] === 0 &&
+                        playerPawns[1] === 0 &&
+                        playerPawns[2] === 0 &&
+                        playerPawns[3] === 0
+                    ) {
+                        canMove[key] = true;
+                    }
                 }
             } else {
                 if (playerPawns[key] + randomNumber <= 57) {
@@ -339,6 +348,7 @@ io.on('connection', (socket) => {
         }
         game.canMove = canMove;
         socket.emit('randomNumber', { randomNumber, canMove });
+        socket.broadcast.to(game.id).emit('showDice', randomNumber);
         if (!canMove[0] && !canMove[1] && !canMove[2] && !canMove[3]) {
             setTimeout(() => {
                 let turn = game.players.findIndex(

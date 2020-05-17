@@ -1,13 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setInviteGame, joinGame } from '../store/actions/game';
+import { setInviteGame } from '../store/actions/game';
 import { CLOSE_ALERT } from '../store/actions/types';
 
 import '../scss/alert.scss';
 import socket from '../utils/socket';
 
-const Alert = ({ history }) => {
+const Alert = () => {
     const alert = useSelector((state) => state.alert);
     const invite = useSelector((state) => state.game.invite);
     const dispatch = useDispatch();
@@ -26,10 +25,8 @@ const Alert = ({ history }) => {
 
     const handleAcceptInvite = () => {
         if (invite) {
-            // dispatch(joinGame());
             socket.emit('acceptInvite', invite);
             dispatch(setInviteGame(null));
-            // history.push('/lobby');
         }
         handleCloseAlert();
     };
@@ -73,4 +70,4 @@ const Alert = ({ history }) => {
     );
 };
 
-export default withRouter(Alert);
+export default Alert;

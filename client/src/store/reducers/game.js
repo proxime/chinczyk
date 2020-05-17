@@ -14,6 +14,7 @@ import {
     PLAYER_DISSCONNECT,
     PLAYER_RETURN,
     END_GAME,
+    SHOW_DICE,
 } from '../actions/types';
 
 const initState = {
@@ -67,6 +68,11 @@ export default (state = initState, action) => {
                 ...state,
                 dice: payload.randomNumber,
                 canMove: payload.canMove,
+            };
+        case SHOW_DICE:
+            return {
+                ...state,
+                dice: payload,
             };
         case NEXT_TURN:
             return {

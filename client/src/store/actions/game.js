@@ -15,6 +15,7 @@ import {
     CLEAN_CHAT,
     REMOVE_GAME,
     KICK,
+    SHOW_DICE,
 } from './types';
 import { setAlert } from './alert';
 
@@ -89,6 +90,13 @@ export const getRandomNumber = (randomNumber, canMove) => {
     return {
         type: GET_RANDOM_NUMBER,
         payload: { randomNumber, canMove },
+    };
+};
+
+export const showDice = (dice) => {
+    return {
+        type: SHOW_DICE,
+        payload: dice,
     };
 };
 

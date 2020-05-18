@@ -91,6 +91,16 @@ const initApp = (store) => {
         );
     });
 
+    socket.on('notEnoughPlayers', () => {
+        store.dispatch(kick());
+        store.dispatch(
+            setAlert(
+                'Gracz opuścił mecz',
+                'Niestety gracz opuścił grę i nie ma odpowiedniej ilości graczy'
+            )
+        );
+    });
+
     socket.on('removeGame', () => {
         store.dispatch(removeGame());
     });

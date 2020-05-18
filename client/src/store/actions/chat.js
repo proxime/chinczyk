@@ -4,12 +4,13 @@ import colors from '../../utils/colors';
 export const sendMessage = (msg, userId) => (dispatch, getState) => {
     const { game } = getState();
     const players = game.gamePlayers.players;
-    const playerIndex = players.findIndex(plr => plr.key === userId);
+    const board = game.gamePlayers.board;
+    const playerIndex = players.findIndex((plr) => plr.key === userId);
 
     const data = {
         msg,
         nick: players[playerIndex].login,
-        color: colors[playerIndex],
+        color: colors[board[userId].number],
         type: 'msg',
     };
     dispatch({
@@ -18,7 +19,7 @@ export const sendMessage = (msg, userId) => (dispatch, getState) => {
     });
 };
 
-export const setChatInfo = msg => {
+export const setChatInfo = (msg) => {
     const data = {
         msg,
         type: 'info',

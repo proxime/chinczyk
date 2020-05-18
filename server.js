@@ -50,10 +50,60 @@ const logoutOrDisconnect = (socket) => {
                     );
             }
         } else {
+            const login = users[socket.id].login;
+            const timeoutIndex = setTimeout(() => {
+                const leftGame = dissconnected.findIndex(
+                    (player) => player.login === login
+                );
+                if (leftGame >= 0) {
+                    const player = dissconnected[leftGame];
+                    dissconnected.splice(leftGame, 1);
+
+                    // Update game info
+                    delete game.board[player.id];
+                    const playerIndex = game.players.findIndex(
+                        (plr) => plr.key === player.id
+                    );
+                    game.players.splice(playerIndex, 1);
+                    if (game.players.length > 1) {
+                        socket.broadcast
+                            .to(gameId)
+                            .emit(
+                                'chatInfo',
+                                `Użytkownik ${player.login} opuścił grę`
+                            );
+
+                        if (game.turn === player.id) {
+                            let turn = playerIndex - 1;
+                            if (turn === game.players.length - 1) turn = 0;
+                            else turn++;
+                            const playerTurn = game.players[turn].key;
+                            game.turn = playerTurn;
+                            game.dice = null;
+                        }
+
+                        socket.broadcast
+                            .to(gameId)
+                            .emit('return', { game, nick: player.login });
+                    } else {
+                        socket.broadcast.to(gameId).emit('notEnoughPlayers');
+                        game.players.forEach((player) => {
+                            if (users[player.key]) {
+                                users[player.key].game = null;
+                                users[player.key].socket.leave(gameId);
+                                usersList[player.key] = player.login;
+                            }
+                        });
+                        delete games[gameId];
+                    }
+                }
+            }, 60000);
+
             dissconnected.push({
                 id: socket.id,
-                login: users[socket.id].login,
+                login,
                 game: users[socket.id].game,
+                index: timeoutIndex,
             });
             socket.broadcast
                 .to(gameId)
@@ -91,6 +141,7 @@ io.on('connection', (socket) => {
         if (leftGame >= 0) {
             const player = dissconnected[leftGame];
             dissconnected.splice(leftGame, 1);
+            clearTimeout(player.index);
             const game = games[player.game];
             if (!game) {
                 return (usersList[socket.id] = login);

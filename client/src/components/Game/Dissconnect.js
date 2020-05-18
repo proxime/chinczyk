@@ -1,14 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import DissconnectAlert from './DissconnectAlert';
 
 const Dissconnect = () => {
     const dissconnected = useSelector((state) => state.game.dissconnect);
 
     const render = dissconnected.map((nick) => (
-        <div
-            className="dissconnect__msg"
-            key={nick}
-        >{`Oczekiwanie na ${nick}...`}</div>
+        <DissconnectAlert nick={nick} key={nick} />
     ));
 
     if (dissconnected.length === 0) return null;

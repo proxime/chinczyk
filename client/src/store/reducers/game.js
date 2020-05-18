@@ -107,6 +107,7 @@ export default (state = initState, action) => {
                 dissconnect: afterReturned,
                 gamePlayers: payload.game,
                 inGame: true,
+                dice: payload.game.dice,
             };
         case END_GAME:
         case KICK:

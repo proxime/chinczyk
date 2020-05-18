@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import dices from './dices';
 
-const Area = ({ number }) => {
+const Area = ({ number, isTherePlayer, index }) => {
     const players = useSelector((state) => state.game.gamePlayers.players);
     const dice = useSelector((state) => state.game.dice);
     const turn = useSelector((state) => state.game.gamePlayers.turn);
@@ -10,9 +10,9 @@ const Area = ({ number }) => {
     return (
         <div className={`area area-${number}`}>
             <div className="area__nick">
-                {players[number] ? players[number].login : '-'}
+                {isTherePlayer ? players[index].login : '-'}
             </div>
-            {dice && players[number] && turn === players[number].key && (
+            {dice && isTherePlayer && turn === players[index].key && (
                 <div className="area__dice">
                     <img src={dices[dice - 1]} alt={dice} />
                 </div>

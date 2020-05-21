@@ -10,7 +10,9 @@ export const sendMessage = (msg, userId) => (dispatch, getState) => {
     const data = {
         msg,
         nick: players[playerIndex].login,
-        color: colors[board[userId].number],
+        color: board[userId]
+            ? colors[board[userId].number]
+            : colors[playerIndex],
         type: 'msg',
     };
     dispatch({

@@ -1,28 +1,29 @@
 {
     "name": "chinczyk",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "",
     "main": "server.js",
     "scripts": {
         "server": "node server",
         "server-dev": "nodemon server",
         "client": "npm start --prefix client",
-        "dev": "concurrently \"npm run server-dev\" \"npm run client\"",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+        "dev": "concurrently \"npm run server-dev\" \"npm run client\""
     },
-    "author": "",
+    "author": "Norbert Kułak",
     "license": "ISC",
     "dependencies": {
         "axios": "^0.19.2",
         "bcrypt": "^4.0.1",
-        "concurrently": "^5.1.0",
-        "config": "^3.3.0",
-        "express": "^4.17.1",
-        "express-validator": "^6.4.0",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "express-validator": "^6.15.0",
         "jsonwebtoken": "^8.5.1",
-        "mongoose": "^5.9.5",
-        "nodemon": "^2.0.2",
-        "socket.io": "^2.3.0",
-        "uuid": "^7.0.2"
+        "mongoose": "^5.13.16",
+        "socket.io": "^2.5.0",
+        "uuid": "^7.0.3"
+    },
+    "devDependencies": {
+        "concurrently": "^8.0.1",
+        "nodemon": "^2.0.22"
     }
 }

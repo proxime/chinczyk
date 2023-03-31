@@ -7,7 +7,6 @@ import store from './store/store';
 import initApp from './initApp';
 
 import './scss/index.scss';
-import './tools/fontawesome/css/all.min.css';
 
 const App = () => {
     return (

@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux';
 import colors from '../../utils/colors';
 import socket from '../../utils/socket';
 import Spinner from '../Spinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const Player = ({ color, player }) => {
     const gameId = useSelector((state) => state.game.gamePlayers);
@@ -20,10 +23,10 @@ const Player = ({ color, player }) => {
                 {player ? (
                     <>
                         <div className="create-game__player-waiting">
-                            <i
-                                className="far fa-user"
-                                style={{ color: colors[color] }}
-                            ></i>
+                            <FontAwesomeIcon
+                                icon={faUser}
+                                color={colors[color]}
+                            />
                         </div>
                         <div className="create-game__player-name">
                             {player.login}
@@ -34,7 +37,7 @@ const Player = ({ color, player }) => {
                                     className="create-game__player-option"
                                     onClick={handleKickPlayer}
                                 >
-                                    <i className="fas fa-times"></i>
+                                    <FontAwesomeIcon icon={faXmark} />
                                 </div>
                             </div>
                         )}

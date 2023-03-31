@@ -3,6 +3,8 @@ import LoginWindow from './LoginWindow';
 import RegisterWindow from './RegisterWindow';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoginWindow } from '../../store/actions/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import '../../scss/authentication.scss';
 
@@ -10,11 +12,11 @@ const Auth = () => {
     const authWindow = useRef(null);
     const authPopup = useRef(null);
 
-    const openNavigation = useSelector(state => state.auth.openWinow);
+    const openNavigation = useSelector((state) => state.auth.openWinow);
 
     const dispatch = useDispatch();
 
-    const handleCloseWindow = e => {
+    const handleCloseWindow = (e) => {
         if (e.target === authPopup.current) setOpenNavigation(null);
     };
 
@@ -25,7 +27,7 @@ const Auth = () => {
         });
     };
 
-    const setOpenNavigation = window => {
+    const setOpenNavigation = (window) => {
         dispatch(toggleLoginWindow(window));
     };
 
@@ -44,7 +46,7 @@ const Auth = () => {
                             className="authentication__close"
                             onClick={() => setOpenNavigation(null)}
                         >
-                            <i className="fas fa-times"></i>
+                            <FontAwesomeIcon icon={faXmark} />
                         </div>
                     </div>
                     {openNavigation === 'login' ? (
